@@ -31,7 +31,6 @@ Error_t ResComparison(double (*func)(double), double eps, int maxN);
 
 //method
 double CubicParabolas(double (*func)(double), int n, PartialSums_t *current_sum);
-//counting method for the first segmentation
 
 //various help functions
 void CheckFopen(FILE* DATA);
