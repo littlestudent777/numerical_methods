@@ -9,8 +9,6 @@
 
 typedef struct error {
 	double res;
-	int N;
-	double h;
 	int it;
 }Error_t;
 

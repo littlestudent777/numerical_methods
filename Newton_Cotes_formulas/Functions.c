@@ -20,8 +20,6 @@ Error_t ResComparison(double (*func)(double), double eps, int maxN) {
 		current_err = fabs(newS - prevS)/15.0;
 		if (current_err < eps) {
 			err.res = newS;
-			err.N = N;
-			err.h = (B - A) / N;
 			break;
 		}
 		prevS = newS;
@@ -77,8 +75,9 @@ void ErrAndItFromEps(double (*func)(double), int maxN) {
 	double eps = 0.1;
 	for (int i = 1; i <= 10; i++) {
 		Error_t err = ResComparison(func, eps, maxN);
-		fprintf(ERR, "%e, %.15lf, %d\n", pow(10, -i), err.res, err.N);
-		fprintf(EPS, "%.15lf, %d\n", pow(10, -i), err.it);
+		//fprintf(ERR, "%e, %.15lf, %d\n", pow(10, -i), err.res, err.N);
+		fprintf(ERR, "%e, %.15lf\n", pow(10, -i), err.res);
+		fprintf(EPS, "%e, %d\n", pow(10, -i), err.it);
 		eps *= 0.1;
 	}
 
@@ -95,7 +94,7 @@ void ErrFromLen(double (*func)(double), int maxN) {
 	double newS, prevS = 0;
 	for (int N = 3; N < maxN; N *= 2) {
 		newS = CubicParabolas(func, N, &sum);
-		fprintf(ERR, "%e, %.15lf, %d\n", (B - A) / N, newS, N);
+		fprintf(ERR, "%e, %.15lf\n", (B - A) / N, newS);
 	}
 	fclose(ERR);
 	CheckFclose(ERR);
